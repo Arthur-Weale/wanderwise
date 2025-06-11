@@ -1,7 +1,7 @@
 import { CityController } from './controllers/CityController.js';
-import { FavoriteController } from './controllers/FavoriteController.js';
-import { RecentController } from './controllers/RecentController.js';
-import { ApiService } from './services/ApiService.js';
+import { FavoriteController } from './controllers/favoriteController.js';
+import { RecentController } from './controllers/recentController.js';
+import { ApiService } from './services/apiService.js';
 
 // Initialize controllers
 const cityController = new CityController();
