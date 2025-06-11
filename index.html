@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WanderWise - City Explorer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="assets/globe.svg" alt="Globe icon" class="globe-icon" />
+        <h1>WanderWise</h1>
+      </div>
+      <p>Discover amazing cities around the world</p>
+    </header>
+
+    <main>
+      <section class="search-section">
+        <div class="search-container">
+          <div class="input-group">
+            <input type="text" id="city-search" placeholder="Enter a city name..." />
+            <button id="search-btn" class="primary-btn">Search</button>
+          </div>
+          <div class="action-buttons">
+            <button id="random-btn" class="secondary-btn">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+              </svg>
+              Surprise Me
+            </button>
+            <button id="favorites-btn" class="secondary-btn">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              Favorites
+            </button>
+          </div>
+        </div>
+        
+        <div class="filter-container">
+          <select id="country-filter">
+            <option value="">Filter by country...</option>
+          </select>
+        </div>
+      </section>
+
+      <section id="loading-section" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Discovering city details...</p>
+      </section>
+
+      <section id="error-section" class="error hidden">
+        <p>⚠️ <span id="error-message"></span></p>
+      </section>
+
+      <section id="city-section" class="city-details hidden">
+        <div class="city-header">
+          <h2 id="city-name">Tokyo, Japan</h2>
+          <button id="favorite-btn" class="favorite-btn">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="city-content">
+          <div class="city-info">
+            <div class="info-card">
+              <h3>City Information</h3>
+              <ul>
+                <li><strong>Country:</strong> <span id="city-country">Japan</span></li>
+                <li><strong>Region:</strong> <span id="city-region">Kanto</span></li>
+                <li><strong>Population:</strong> <span id="city-population">37,400,000</span></li>
+                <li><strong>Elevation:</strong> <span id="city-elevation">40 m</span></li>
+                <li><strong>Latitude:</strong> <span id="city-latitude">35.6895</span></li>
+                <li><strong>Longitude:</strong> <span id="city-longitude">139.6917</span></li>
+              </ul>
+            </div>
+            
+            <div class="map-container">
+              <div id="map" class="map"></div>
+            </div>
+          </div>
+          
+          <div class="gallery">
+            <h3>City Gallery</h3>
+            <div id="image-gallery" class="image-grid">
+              <!-- Images will be inserted here -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="favorites-section" class="favorites hidden">
+        <div class="favorites-header">
+          <h2>Favorite Cities</h2>
+          <button id="close-favorites" class="close-btn">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            </svg>
+          </button>
+        </div>
+        <div id="favorites-list" class="favorites-list">
+          <!-- Favorite cities will be inserted here -->
+        </div>
+      </section>
+
+      <section id="recent-section" class="recent-searches">
+        <h3>Recent Searches</h3>
+        <div id="recent-list" class="recent-list">
+          <!-- Recent searches will be inserted here -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>WanderWise &copy; 2025 | Created by Arthur Weale</p>
+      <p>City data provided by GeoDB Cities API | Images from Pixabay</p>
+    </footer>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
