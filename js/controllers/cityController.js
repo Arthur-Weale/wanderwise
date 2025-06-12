@@ -1,8 +1,8 @@
-import { ApiService } from '../services/ApiService.js';
-import { StorageService } from '../services/StorageService.js';
-import { CityView } from '../views/CityView.js';
-import { ErrorView } from '../views/ErrorView.js';
-import { LoadingView } from '../views/LoadingView.js';
+import { ApiService } from '../services/apiService.js';
+import { StorageService } from '../services/storageService.js';
+import { CityView } from '../views/cityView.js';
+import { ErrorView } from '../views/errorView.js';
+import { LoadingView } from '../views/loadingView.js';
 
 export class CityController {
   constructor() {

@@ -1,0 +1,26 @@
+{
+  "name": "wanderwise",
+  "version": "1.0.0",
+  "description": "WanderWise is an interactive city explorer web app that allows users to discover interesting cities around the world. By searching or selecting a city, users will be presented with detailed data (population, elevation, location) and a curated image gallery of that city.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arthur-Weale/wanderwise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arthur-Weale/wanderwise/issues"
+  },
+  "homepage": "https://github.com/Arthur-Weale/wanderwise#readme",
+  "dependencies": {
+    "vite": "^6.3.5"
+  }
+}

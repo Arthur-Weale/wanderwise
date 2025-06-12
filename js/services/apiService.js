@@ -3,13 +3,13 @@ const GEO_API_URL = 'https://wft-geo-db.p.rapidapi.com/v1/geo';
 const GEO_API_OPTIONS = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Key': 'your_geodb_api_key_here', // Replace with your actual API key
+    'X-RapidAPI-Key': '531a0d63c9msh1c39074e5e042b7p1416bdjsna0b645cce4ea', // Replace with your actual API key
     'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
   }
 };
 
 const PIXABAY_API_URL = 'https://pixabay.com/api/';
-const PIXABAY_API_KEY = 'your_pixabay_api_key_here'; // Replace with your actual API key
+const PIXABAY_API_KEY = '33672765-518d7195c88fbb2c43ba1bb68'; // Replace with your actual API key
 
 export class ApiService {
   async fetchCityData(cityName, countryCode = '') {

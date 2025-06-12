@@ -1,4 +1,4 @@
-import { CityController } from './controllers/CityController.js';
+import { CityController } from './controllers/cityController.js';
 import { FavoriteController } from './controllers/favoriteController.js';
 import { RecentController } from './controllers/recentController.js';
 import { ApiService } from './services/apiService.js';

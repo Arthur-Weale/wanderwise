@@ -1,6 +1,6 @@
-import { StorageService } from '../services/StorageService.js';
-import { FavoriteView } from '../views/FavoriteView.js';
-import { CityController } from './CityController.js';
+import { StorageService } from '../services/storageService.js';
+import { FavoriteView } from '../views/favoriteView.js';
+import { CityController } from './cityController.js';
 
 export class FavoriteController {
   constructor(cityController) {

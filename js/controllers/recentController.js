@@ -1,6 +1,6 @@
-import { StorageService } from '../services/StorageService.js';
-import { RecentView } from '../views/RecentView.js';
-import { CityController } from './CityController.js';
+import { StorageService } from '../services/storageService.js';
+import { RecentView } from '../views/recentView.js';
+import { CityController } from './cityController.js';
 
 export class RecentController {
   constructor(cityController) {
