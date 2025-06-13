@@ -6,6 +6,11 @@
   <title>WanderWise - City Explorer</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+
 </head>
 <body>
   <div class="container">
@@ -21,17 +26,18 @@
       <section class="search-section">
         <div class="search-container">
           <div class="input-group">
+            <label for="city-search" class="visually-hidden">Search for a city</label>
             <input type="text" id="city-search" placeholder="Enter a city name..." />
             <button id="search-btn" class="primary-btn">Search</button>
           </div>
           <div class="action-buttons">
-            <button id="random-btn" class="secondary-btn">
+            <button id="random-btn" class="secondary-btn" aria-label="get random city">
               <svg class="icon" viewBox="0 0 24 24">
                 <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
               </svg>
               Surprise Me
             </button>
-            <button id="favorites-btn" class="secondary-btn">
+            <button id="favorites-btn" class="secondary-btn" aria-label="Add to favorites">
               <svg class="icon" viewBox="0 0 24 24">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
@@ -67,6 +73,10 @@
         </div>
         
         <div class="city-content">
+          <div style="margin-top: 1.5rem;">
+  <button id="more-info-btn" class="primary-btn">More Info</button>
+  <div id="extra-info-box" style="margin-top: 1rem; font-style: italic; color: #555;"></div>
+</div>
           <div class="city-info">
             <div class="info-card">
               <h3>City Information</h3>
@@ -123,5 +133,6 @@
   </div>
 
   <script type="module" src="js/main.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
 </html>
