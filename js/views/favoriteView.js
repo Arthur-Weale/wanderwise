@@ -4,16 +4,16 @@ export class FavoriteView {
     this.favoritesList = document.getElementById('favorites-list');
     this.favoriteBtn = document.getElementById('favorite-btn');
   }
-  
+
   renderFavoritesList(favorites) {
     this.favoritesList.innerHTML = '';
-    
+
     if (favorites.length === 0) {
       this.favoritesList.innerHTML = '<p class="no-favorites">No favorite cities yet.</p>';
       return;
     }
-    
-    favorites.forEach(city => {
+
+    favorites.forEach((city) => {
       const favoriteItem = document.createElement('div');
       favoriteItem.className = 'favorite-item';
       favoriteItem.dataset.id = city.id;
@@ -29,7 +29,7 @@ export class FavoriteView {
       this.favoritesList.appendChild(favoriteItem);
     });
   }
-  
+
   updateFavoriteButton(isFavorite) {
     if (isFavorite) {
       this.favoriteBtn.classList.add('active');
@@ -37,15 +37,15 @@ export class FavoriteView {
       this.favoriteBtn.classList.remove('active');
     }
   }
-  
+
   show() {
     this.favoritesSection.classList.remove('hidden');
   }
-  
+
   hide() {
     this.favoritesSection.classList.add('hidden');
   }
-  
+
   isVisible() {
     return !this.favoritesSection.classList.contains('hidden');
   }

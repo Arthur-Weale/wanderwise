@@ -13,10 +13,10 @@ async function populateCountryFilter() {
   const apiService = new ApiService();
   const countries = await apiService.fetchCountries();
   const countryFilter = document.getElementById('country-filter');
-  
+
   countryFilter.innerHTML = '<option value="">Filter by country...</option>';
-  
-  countries.forEach(country => {
+
+  countries.forEach((country) => {
     const option = document.createElement('option');
     option.value = country.code;
     option.textContent = country.name;
