@@ -46,45 +46,99 @@ export class ApiService {
   }
   
   async fetchRandomCity() {
-    try {
-      // First, get a random country
-      const countriesResponse = await fetch(`${GEO_API_URL}/countries?limit=10`, GEO_API_OPTIONS);
-      const countriesData = await countriesResponse.json();
-      
-      if (!countriesData.data || countriesData.data.length === 0) {
-        throw new Error('Failed to fetch countries');
-      }
-      
-      // Pick a random country
-      const randomCountry = countriesData.data[Math.floor(Math.random() * countriesData.data.length)];
-      
-      // Get cities for that country
-      const citiesResponse = await fetch(`${GEO_API_URL}/countries/${randomCountry.code}/cities?limit=20`, GEO_API_OPTIONS);
-      const citiesData = await citiesResponse.json();
-      
-      if (!citiesData.data || citiesData.data.length === 0) {
-        throw new Error('Failed to fetch cities for country');
-      }
-      
-      // Pick a random city
-      const randomCity = citiesData.data[Math.floor(Math.random() * citiesData.data.length)];
-      
-      return {
-        id: randomCity.id,
-        name: randomCity.name,
-        country: randomCountry.name,
-        countryCode: randomCountry.code,
-        region: randomCity.region,
-        population: randomCity.population,
-        elevation: randomCity.elevationMeters,
-        latitude: randomCity.latitude,
-        longitude: randomCity.longitude
-      };
-    } catch (error) {
-      console.error('API Error (fetchRandomCity):', error);
-      throw new Error('Failed to retrieve a random city. Please try again.');
+  try {
+    // Attempt to fetch countries from API
+    let countriesData = [];
+
+    const countriesResponse = await fetch(`${GEO_API_URL}/countries?limit=10`, GEO_API_OPTIONS);
+    if (countriesResponse.ok) {
+      const json = await countriesResponse.json();
+      countriesData = json.data;
+    } else {
+      console.warn("Falling back to hardcoded countries (API not OK)");
+      countriesData = [
+        { code: 'US', name: 'United States' },
+        { code: 'GB', name: 'United Kingdom' },
+        { code: 'FR', name: 'France' },
+        { code: 'JP', name: 'Japan' },
+        { code: 'BR', name: 'Brazil' },
+        { code: 'IN', name: 'India' },
+        { code: 'ZA', name: 'South Africa' },
+        { code: 'NG', name: 'Nigeria' },
+        { code: 'EG', name: 'Egypt' },
+        { code: 'CA', name: 'Canada' }
+      ];
     }
+
+    const randomCountry = countriesData[Math.floor(Math.random() * countriesData.length)];
+
+    // Try fetching cities for the country
+    const citiesResponse = await fetch(`${GEO_API_URL}/countries/${randomCountry.code}/cities?limit=20`, GEO_API_OPTIONS);
+    if (!citiesResponse.ok) throw new Error('Failed to fetch cities for country');
+    
+    const citiesData = await citiesResponse.json();
+    const cityList = citiesData.data;
+
+    if (!cityList || cityList.length === 0) throw new Error('No cities found');
+
+    const randomCity = cityList[Math.floor(Math.random() * cityList.length)];
+
+    return {
+      id: randomCity.id,
+      name: randomCity.name,
+      country: randomCountry.name,
+      countryCode: randomCountry.code,
+      region: randomCity.region,
+      population: randomCity.population,
+      elevation: randomCity.elevationMeters,
+      latitude: randomCity.latitude,
+      longitude: randomCity.longitude
+    };
+  } catch (error) {
+    console.error('API Error (fetchRandomCity):', error);
+
+    // Hardcoded fallback city list
+    const fallbackCities = [
+      {
+        id: 'new-york',
+        name: 'New York',
+        country: 'United States',
+        countryCode: 'US',
+        region: 'New York',
+        population: 8419600,
+        elevation: 10,
+        latitude: 40.7128,
+        longitude: -74.0060
+      },
+      {
+        id: 'tokyo',
+        name: 'Tokyo',
+        country: 'Japan',
+        countryCode: 'JP',
+        region: 'Tokyo',
+        population: 13929286,
+        elevation: 40,
+        latitude: 35.6895,
+        longitude: 139.6917
+      },
+      {
+        id: 'london',
+        name: 'London',
+        country: 'United Kingdom',
+        countryCode: 'GB',
+        region: 'England',
+        population: 8982000,
+        elevation: 11,
+        latitude: 51.5074,
+        longitude: -0.1278
+      }
+    ];
+
+    const randomFallback = fallbackCities[Math.floor(Math.random() * fallbackCities.length)];
+    return randomFallback;
   }
+}
+
   
   async fetchCityImages(cityName) {
     try {
@@ -114,26 +168,49 @@ export class ApiService {
   }
   
   async fetchCountries() {
-    try {
-      const response = await fetch(`${GEO_API_URL}/countries?limit=250`, GEO_API_OPTIONS);
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch countries');
-      }
-      
-      const data = await response.json();
-      
-      if (!data.data) {
-        throw new Error('No country data available');
-      }
-      
-      return data.data.map(country => ({
-        code: country.code,
-        name: country.name
-      }));
-    } catch (error) {
-      console.error('API Error (fetchCountries):', error);
-      return [];
+  const fallbackCountries = [
+    { code: 'US', name: 'United States' },
+    { code: 'CA', name: 'Canada' },
+    { code: 'GB', name: 'United Kingdom' },
+    { code: 'AU', name: 'Australia' },
+    { code: 'ZA', name: 'South Africa' },
+    { code: 'IN', name: 'India' },
+    { code: 'DE', name: 'Germany' },
+    { code: 'FR', name: 'France' },
+    { code: 'IT', name: 'Italy' },
+    { code: 'JP', name: 'Japan' },
+    { code: 'CN', name: 'China' },
+    { code: 'BR', name: 'Brazil' },
+    { code: 'MX', name: 'Mexico' },
+    { code: 'NG', name: 'Nigeria' },
+    { code: 'KE', name: 'Kenya' },
+    { code: 'EG', name: 'Egypt' },
+    { code: 'RU', name: 'Russia' }
+    // Add more if needed
+  ];
+
+  try {
+    const response = await fetch(`${GEO_API_URL}/countries?limit=250`, GEO_API_OPTIONS);
+
+    if (!response.ok) {
+      console.warn('Falling back to hardcoded countries (API not OK)');
+      return fallbackCountries;
     }
+
+    const data = await response.json();
+
+    if (!data.data || data.data.length === 0) {
+      console.warn('Falling back to hardcoded countries (no data returned)');
+      return fallbackCountries;
+    }
+
+    return data.data.map(country => ({
+      code: country.code,
+      name: country.name
+    }));
+  } catch (error) {
+    console.error('API Error (fetchCountries):', error);
+    return fallbackCountries;
   }
+}
 }
