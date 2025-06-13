@@ -58,6 +58,7 @@ export class CityView {
   }
 
   renderMap(city) {
+    let L;
     // Remove existing map instance if exists
     if (this.map) {
       this.map.remove();

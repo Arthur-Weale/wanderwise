@@ -1,6 +1,5 @@
 import { StorageService } from '../services/storageService.js';
 import { FavoriteView } from '../views/favoriteView.js';
-import { CityController } from './cityController.js';
 
 export class FavoriteController {
   constructor(cityController) {
@@ -18,6 +17,7 @@ export class FavoriteController {
       .getElementById('close-favorites')
       .addEventListener('click', () => this.hideFavorites());
 
+    
     document.getElementById('favorites-list').addEventListener('click', (e) => {
       if (e.target.closest('.favorite-item')) {
         const cityId = e.target.closest('.favorite-item').dataset.id;
@@ -28,7 +28,9 @@ export class FavoriteController {
 
   toggleFavorite() {
     const currentCity = this.cityController.getCurrentCity();
-    if (!currentCity) return;
+    if (!currentCity) {
+      return;
+    }
 
     const isFavorite = this.storageService.isFavorite(currentCity.id);
 
@@ -74,6 +76,7 @@ export class FavoriteController {
       } catch (error) {
         this.cityController.loadingView.hide();
         this.cityController.errorView.showError('Failed to load city details');
+        console.log(error);
       }
     }
   }

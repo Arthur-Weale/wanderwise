@@ -22,7 +22,9 @@ export class CityController {
   initEventListeners() {
     document.getElementById('search-btn').addEventListener('click', () => this.searchCity());
     document.getElementById('city-search').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') this.searchCity();
+      if (e.key === 'Enter') {
+        this.searchCity();
+      }
     });
     document.getElementById('random-btn').addEventListener('click', () => this.getRandomCity());
   }
@@ -106,7 +108,9 @@ export class CityController {
 
     try {
       const response = await fetch(url);
-      if (!response.ok) throw new Error('Info not found');
+      if (!response.ok) {
+        throw new Error('Info not found');
+      }
       const data = await response.json();
       return data.extract || 'No additional information available.';
     } catch (error) {

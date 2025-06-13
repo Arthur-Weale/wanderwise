@@ -77,13 +77,16 @@ export class ApiService {
         `${GEO_API_URL}/countries/${randomCountry.code}/cities?limit=20`,
         GEO_API_OPTIONS
       );
-      if (!citiesResponse.ok) throw new Error('Failed to fetch cities for country');
+      if (!citiesResponse.ok) {
+        throw new Error('Failed to fetch cities for country');
+      }
 
       const citiesData = await citiesResponse.json();
       const cityList = citiesData.data;
 
-      if (!cityList || cityList.length === 0) throw new Error('No cities found');
-
+      if (!cityList || cityList.length === 0){
+        throw new Error('No cities found');
+      }
       const randomCity = cityList[Math.floor(Math.random() * cityList.length)];
 
       return {

@@ -1,6 +1,5 @@
 import { StorageService } from '../services/storageService.js';
 import { RecentView } from '../views/recentView.js';
-import { CityController } from './cityController.js';
 
 export class RecentController {
   constructor(cityController) {
@@ -44,6 +43,7 @@ export class RecentController {
       } catch (error) {
         this.cityController.loadingView.hide();
         this.cityController.errorView.showError('Failed to load city details');
+        console.log(error);
       }
     }
   }
