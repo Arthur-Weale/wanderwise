@@ -20,6 +20,7 @@ export class CityView {
     this.cityElevation.textContent = city.elevation ? `${city.elevation} m` : 'N/A';
     this.cityLatitude.textContent = city.latitude;
     this.cityLongitude.textContent = city.longitude;
+    this.renderMap(city); 
   }
   
   renderImageGallery(images) {
@@ -55,4 +56,22 @@ export class CityView {
   hide() {
     this.citySection.classList.add('hidden');
   }
+
+  renderMap(city) {
+  // Remove existing map instance if exists
+  if (this.map) {
+    this.map.remove();
+  }
+
+  this.map = L.map('map').setView([city.latitude, city.longitude], 10);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(this.map);
+
+  L.marker([city.latitude, city.longitude]).addTo(this.map)
+    .bindPopup(`${city.name}, ${city.country}`)
+    .openPopup();
+}
+
 }
