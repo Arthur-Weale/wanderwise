@@ -12,6 +12,9 @@ export class CityController {
     this.errorView = new ErrorView();
     this.loadingView = new LoadingView();
     this.currentCity = null;
+
+    this.moreInfoBtn = document.getElementById('more-info-btn');
+    this.extraInfoBox = document.getElementById('extra-info-box');
     
     this.initEventListeners();
   }
@@ -61,6 +64,16 @@ export class CityController {
       this.errorView.showError(error.message);
       console.error('Search error:', error);
     }
+
+      this.moreInfoBtn.addEventListener('click', async () => {
+    if (!this.currentCity) {
+      this.errorView.showError('Please select a city first.');
+      return;
+    }
+    this.extraInfoBox.textContent = 'Loading information...';
+    const info = await this.fetchExtraInfo(this.currentCity.name);
+    this.extraInfoBox.textContent = info;
+  });
   }
   
   async getRandomCity() {
@@ -91,4 +104,19 @@ export class CityController {
   getCurrentCity() {
     return this.currentCity;
   }
+
+  async fetchExtraInfo(cityName) {
+  const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cityName)}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Info not found');
+    const data = await response.json();
+    return data.extract || 'No additional information available.';
+  } catch (error) {
+    console.error('Extra info fetch error:', error);
+    return 'Failed to load extra info.';
+  }
+}
+
 }

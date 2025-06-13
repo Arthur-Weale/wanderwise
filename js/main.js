@@ -25,4 +25,6 @@ async function populateCountryFilter() {
 }
 
 // Initialize the app
-populateCountryFilter();
+document.addEventListener('DOMContentLoaded', () => {
+  populateCountryFilter();
+});
