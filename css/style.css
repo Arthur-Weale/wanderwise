@@ -1,6 +1,6 @@
 :root {
-  --primary: #4A90E2;
-  --primary-dark: #3a7bc8;
+  --primary: #2D75D0;
+  --primary-dark: #255dad;
   --secondary: #F5F5F5;
   --dark: #2C3E50;
   --light: #ffffff;
@@ -476,4 +476,23 @@ footer {
 footer p {
   margin: 0.5rem 0;
   opacity: 0.8;
+}
+
+.map {
+  height: 400px;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
